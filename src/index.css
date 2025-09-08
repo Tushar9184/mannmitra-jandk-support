@@ -207,7 +207,6 @@
 .glow-shadow {
   box-shadow: var(--shadow-glow);
 }
-}
 
 @layer base {
   * {
