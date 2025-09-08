@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const features = [
   {
     icon: Brain,
-    title: "AI-Guided Support",
+    title: "Digital Support",
     description: "24/7 chatbot with local cultural understanding and multilingual support",
     gradient: "wellness-gradient"
   },
@@ -48,13 +48,8 @@ export const Home: React.FC = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="animate-fade-in">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-primary">MannMitra</span>
-                <br />
-                <span className="text-muted-foreground text-2xl md:text-3xl">
-                  Digital Psychological Support for J&K Students
-                </span>
-              </h1>
+              <h1 className="text-5xl md:text-6xl font-extrabold mb-2 text-blue-700">MannMitra</h1>
+              <h2 className="text-xl md:text-3xl font-bold text-muted-foreground mb-6">Digital Psychological Support for J&K Students</h2>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Your compassionate companion for mental wellness, designed with understanding 
                 of Kashmiri culture and values. Get support in your native language.
@@ -151,10 +146,10 @@ export const Home: React.FC = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Start Talking to Your AI Companion
+              Start Talking to Your Virtual Companion
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get immediate support with our AI chatbot trained in local cultural context. 
+              Get immediate support with our chatbot trained in local cultural context. 
               Available in multiple languages spoken in J&K.
             </p>
           </div>

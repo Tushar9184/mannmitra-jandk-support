@@ -36,7 +36,7 @@ const localMetaphors = {
 
 const initialBotMessage: Message = {
   id: '1',
-  text: "Assalam-o-Alaikum! I'm your MannMitra companion 🤗 I'm here to listen and support you. How are you feeling today?",
+  text: "Assalam-o-Alaikum! I'm your MannMitra companion. I'm here to listen and support you. How are you feeling today?",
   sender: 'bot',
   timestamp: new Date(),
   suggestions: [
@@ -73,7 +73,7 @@ export const Chatbot: React.FC = () => {
     // Crisis detection
     if (lowercaseMessage.includes('suicide') || lowercaseMessage.includes('harm myself') || 
         lowercaseMessage.includes('end it all') || lowercaseMessage.includes('kill myself')) {
-      response = "I'm really concerned about you. Please know that you're not alone, and your life has value. Let me connect you with professional help immediately. 🤗";
+      response = "I'm really concerned about you. Please know that you're not alone, and your life has value. Let me connect you with professional help immediately.";
       escalate = true;
       suggestions = ["Book urgent counseling", "Call helpline now", "Chat with counselor"];
     }
@@ -100,9 +100,9 @@ export const Chatbot: React.FC = () => {
     }
     // Sadness
     else if (lowercaseMessage.includes('sad') || lowercaseMessage.includes('depressed') || lowercaseMessage.includes('down')) {
-      response = "I hear that you're going through a difficult time. " + 
+      response = "I hear that you're going through a difficult time. " +
         (localMetaphors.sad[Math.floor(Math.random() * localMetaphors.sad.length)] || "") +
-        " Your feelings are valid. 🤗";
+        " Your feelings are valid.";
       suggestions = ["Mood boosting activities", "Connect with friends", "Relaxing music", "Professional support"];
     }
     // Sleep issues
@@ -124,10 +124,10 @@ export const Chatbot: React.FC = () => {
     }
     // Default response
     else {
-      response = "Thank you for sharing with me. I'm here to listen and support you. " + 
-        (currentMood !== 'neutral' && localMetaphors[currentMood as keyof typeof localMetaphors] ? 
-          localMetaphors[currentMood as keyof typeof localMetaphors][0] : 
-          "You're not alone in this journey. 🤗");
+      response = "Thank you for sharing with me. I'm here to listen and support you. " +
+        (currentMood !== 'neutral' && localMetaphors[currentMood as keyof typeof localMetaphors] ?
+          localMetaphors[currentMood as keyof typeof localMetaphors][0] :
+          "You're not alone in this journey.");
       suggestions = ["Tell me more", "Breathing exercise", "Resources library", "Talk to counselor"];
     }
 
@@ -175,7 +175,7 @@ export const Chatbot: React.FC = () => {
             <Bot className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h3 className="font-semibold">MannMitra AI Companion</h3>
+            <h3 className="font-semibold">MannMitra Companion</h3>
             <p className="text-sm text-muted-foreground">Your supportive mental wellness guide</p>
           </div>
         </div>

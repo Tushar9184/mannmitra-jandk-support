@@ -38,10 +38,7 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Brain className="h-6 w-6 text-primary" />
-            </div>
-            <span className="text-xl font-bold text-primary">MannMitra</span>
+            {/* Logo removed as per user request */}
           </Link>
           
           <div className="hidden md:flex items-center space-x-6">
