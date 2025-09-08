@@ -2,41 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* MannMitra Design System - Mood-based themes for mental wellness */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Neutral/Default theme */
+    --background: 220 15% 98%;
+    --foreground: 220 10% 15%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 220 10% 15%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 10% 15%;
+    
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 220 10% 15%;
+    
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 60%;
+    
+    --accent: 220 15% 92%;
+    --accent-foreground: 220 10% 15%;
+    
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 15% 90%;
+    --input: 220 15% 95%;
+    --ring: 220 70% 50%;
+    
+    --radius: 0.75rem;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Mood-based color variables */
+    /* Happy Theme - Yellow/Orange */
+    --happy-primary: 35 90% 55%;
+    --happy-secondary: 45 100% 70%;
+    --happy-background: 45 100% 97%;
+    --happy-accent: 40 95% 85%;
+    --happy-gradient: linear-gradient(135deg, hsl(35 90% 55%), hsl(45 100% 70%));
+    
+    /* Sad Theme - Blue/Purple */
+    --sad-primary: 220 70% 45%;
+    --sad-secondary: 240 60% 60%;
+    --sad-background: 230 25% 97%;
+    --sad-accent: 225 40% 90%;
+    --sad-gradient: linear-gradient(135deg, hsl(220 70% 45%), hsl(240 60% 60%));
+    
+    /* Calm Theme - Green/Teal */
+    --calm-primary: 160 70% 45%;
+    --calm-secondary: 180 60% 55%;
+    --calm-background: 170 25% 97%;
+    --calm-accent: 165 40% 90%;
+    --calm-gradient: linear-gradient(135deg, hsl(160 70% 45%), hsl(180 60% 55%));
+    
+    /* Anxious Theme - Grey/Light Red */
+    --anxious-primary: 0 30% 60%;
+    --anxious-secondary: 15 20% 70%;
+    --anxious-background: 10 15% 97%;
+    --anxious-accent: 5 20% 92%;
+    --anxious-gradient: linear-gradient(135deg, hsl(0 30% 60%), hsl(15 20% 70%));
+    
+    /* Stressed Theme - Dark Red/Maroon */
+    --stressed-primary: 0 60% 40%;
+    --stressed-secondary: 15 50% 50%;
+    --stressed-background: 5 20% 96%;
+    --stressed-accent: 10 30% 90%;
+    --stressed-gradient: linear-gradient(135deg, hsl(0 60% 40%), hsl(15 50% 50%));
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Wellness gradients */
+    --wellness-nature: linear-gradient(135deg, hsl(160 70% 45%), hsl(120 60% 50%));
+    --wellness-mountain: linear-gradient(135deg, hsl(200 70% 60%), hsl(220 80% 70%));
+    --wellness-saffron: linear-gradient(135deg, hsl(35 90% 55%), hsl(45 85% 60%));
+    --wellness-chinar: linear-gradient(135deg, hsl(25 70% 50%), hsl(15 80% 60%));
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(220 15% 0% / 0.1);
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-card: 0 2px 12px -2px hsl(220 15% 0% / 0.08);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +144,82 @@ All colors MUST be HSL.
   }
 }
 
+/* Mood theme classes */
+.mood-happy {
+  --primary: var(--happy-primary);
+  --background: var(--happy-background);
+  --accent: var(--happy-accent);
+}
+
+.mood-sad {
+  --primary: var(--sad-primary);
+  --background: var(--sad-background);
+  --accent: var(--sad-accent);
+}
+
+.mood-calm {
+  --primary: var(--calm-primary);
+  --background: var(--calm-background);
+  --accent: var(--calm-accent);
+}
+
+.mood-anxious {
+  --primary: var(--anxious-primary);
+  --background: var(--anxious-background);
+  --accent: var(--anxious-accent);
+}
+
+.mood-stressed {
+  --primary: var(--stressed-primary);
+  --background: var(--stressed-background);
+  --accent: var(--stressed-accent);
+}
+
+/* Custom utility classes */
+.wellness-card {
+  @apply bg-card rounded-xl border border-border/50 shadow-[var(--shadow-card)] backdrop-blur-sm;
+}
+
+.wellness-gradient {
+  background: var(--wellness-nature);
+}
+
+.mountain-gradient {
+  background: var(--wellness-mountain);
+}
+
+.saffron-gradient {
+  background: var(--wellness-saffron);
+}
+
+.chinar-gradient {
+  background: var(--wellness-chinar);
+}
+
+.transition-smooth {
+  transition: var(--transition-smooth);
+}
+
+.transition-bounce {
+  transition: var(--transition-bounce);
+}
+
+.glow-shadow {
+  box-shadow: var(--shadow-glow);
+}
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-smooth;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
