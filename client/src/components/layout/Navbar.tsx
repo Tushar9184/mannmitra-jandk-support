@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Brain, Calendar, BookOpen, Users, Activity, User, BarChart3, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useMood } from '@/contexts/MoodContext';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   Sheet,
   SheetContent,
@@ -23,6 +24,7 @@ const navItems = [
 export const Navbar: React.FC = () => {
   const location = useLocation();
   const { currentMood } = useMood();
+  const { user, logout } = useAuth();
   const isAdmin = location.pathname.startsWith('/admin');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,8 +63,8 @@ export const Navbar: React.FC = () => {
                   key={item.name}
                   to={item.path}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-smooth ${isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                     }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -73,6 +75,16 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-2">
+            {user ? (
+              <Button variant="outline" size="sm" onClick={logout} className="hidden md:flex">
+                Logout
+              </Button>
+            ) : (
+              <Button variant="default" size="sm" asChild className="hidden md:flex">
+                <Link to="/login">Login</Link>
+              </Button>
+            )}
+
             <Button variant="outline" size="sm" asChild className="hidden md:flex">
               <Link to="/admin">Admin</Link>
             </Button>
@@ -103,8 +115,8 @@ export const Navbar: React.FC = () => {
                         to={item.path}
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-smooth ${isActive
-                            ? 'bg-primary text-primary-foreground'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                           }`}
                       >
                         <Icon className="h-5 w-5" />
