@@ -5,13 +5,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  User, 
-  Award, 
-  Calendar, 
-  TrendingUp, 
-  Heart, 
-  Target, 
+import {
+  User,
+  Award,
+  Calendar,
+  TrendingUp,
+  Heart,
+  Target,
   Star,
   Crown,
   Flame,
@@ -19,49 +19,11 @@ import {
   Leaf
 } from 'lucide-react';
 
-const userStats = {
-  name: "Anonymous User",
-  joinDate: "January 2024",
-  totalPoints: 1247,
-  currentStreak: 12,
-  longestStreak: 23,
-  tasksCompleted: 87,
-  badgesEarned: 8,
-  level: 15,
-  nextLevelPoints: 1500,
-  wellnessScore: 78
-};
-
-const recentActivity = [
-  { 
-    type: 'task', 
-    title: 'Mountain Gaze Meditation', 
-    points: 15, 
-    date: 'Today', 
-    icon: Mountain 
-  },
-  { 
-    type: 'badge', 
-    title: 'Earned Kesar Badge', 
-    points: 50, 
-    date: 'Yesterday', 
-    icon: Award 
-  },
-  { 
-    type: 'streak', 
-    title: '10-day wellness streak!', 
-    points: 25, 
-    date: '2 days ago', 
-    icon: Flame 
-  },
-  { 
-    type: 'task', 
-    title: 'Saffron Breathing Exercise', 
-    points: 15, 
-    date: '3 days ago', 
-    icon: Leaf 
-  }
-];
+import { useData } from '@/contexts/DataProvider';
+// Removed hardcoded "userStats" and "recentActivity"
+// Keeping "achievements" and "moodData" static for now as they weren't fully moved to context yet,
+// or I can move them if I want to be thorough. The prompt said "Simulate Persistence".
+// I'll keep achievements static but mapped to user progress if possible, but simplest is to just use the userStats from context.
 
 const achievements = [
   {
@@ -133,6 +95,7 @@ const moodData = [
 ];
 
 export const Profile: React.FC = () => {
+  const { userStats, recentActivity } = useData();
   const progressToNextLevel = ((userStats.totalPoints % 100) / 100) * 100;
 
   return (
@@ -162,7 +125,7 @@ export const Profile: React.FC = () => {
                   Member since {userStats.joinDate}
                 </CardDescription>
               </CardHeader>
-              
+
               <CardContent className="space-y-6">
                 {/* Level Progress */}
                 <div className="text-center">
@@ -261,7 +224,17 @@ export const Profile: React.FC = () => {
                   <CardContent>
                     <div className="space-y-4">
                       {recentActivity.map((activity, index) => {
-                        const Icon = activity.icon;
+                        // Simple icon mapper
+                        const getIcon = (name: string) => {
+                          switch (name) {
+                            case 'Mountain': return Mountain;
+                            case 'Award': return Award;
+                            case 'Flame': return Flame;
+                            case 'Leaf': return Leaf;
+                            default: return Target;
+                          }
+                        };
+                        const Icon = getIcon(activity.iconName);
                         return (
                           <div key={index} className="flex items-center space-x-4 p-3 rounded-lg bg-accent/50">
                             <div className="p-2 rounded-full bg-primary/10">
@@ -294,13 +267,12 @@ export const Profile: React.FC = () => {
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-4">
                       {achievements.map((achievement) => (
-                        <div 
+                        <div
                           key={achievement.id}
-                          className={`p-4 rounded-lg border transition-bounce hover:scale-[1.02] ${
-                            achievement.unlocked 
-                              ? 'bg-yellow-50 border-yellow-200 ring-2 ring-yellow-300' 
-                              : 'bg-gray-50 border-gray-200'
-                          }`}
+                          className={`p-4 rounded-lg border transition-bounce hover:scale-[1.02] ${achievement.unlocked
+                            ? 'bg-yellow-50 border-yellow-200 ring-2 ring-yellow-300'
+                            : 'bg-gray-50 border-gray-200'
+                            }`}
                         >
                           <div className="flex items-start space-x-3">
                             <div className={`text-3xl ${achievement.unlocked ? '' : 'grayscale opacity-50'}`}>
@@ -309,14 +281,13 @@ export const Profile: React.FC = () => {
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-2">
                                 <h3 className="font-semibold">{achievement.name}</h3>
-                                <Badge 
+                                <Badge
                                   variant={achievement.unlocked ? "default" : "secondary"}
-                                  className={`text-xs ${
-                                    achievement.level === 'Bronze' ? 'bg-amber-100 text-amber-800' :
+                                  className={`text-xs ${achievement.level === 'Bronze' ? 'bg-amber-100 text-amber-800' :
                                     achievement.level === 'Silver' ? 'bg-gray-100 text-gray-800' :
-                                    achievement.level === 'Gold' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-purple-100 text-purple-800'
-                                  }`}
+                                      achievement.level === 'Gold' ? 'bg-yellow-100 text-yellow-800' :
+                                        'bg-purple-100 text-purple-800'
+                                    }`}
                                 >
                                   {achievement.level}
                                 </Badge>
@@ -324,16 +295,16 @@ export const Profile: React.FC = () => {
                               <p className="text-sm text-muted-foreground mb-3">
                                 {achievement.description}
                               </p>
-                              
+
                               {achievement.unlocked ? (
                                 <p className="text-xs text-green-600 font-medium">
                                   Unlocked on {achievement.unlockedDate}
                                 </p>
                               ) : (
                                 <div className="space-y-2">
-                                  <Progress 
-                                    value={(achievement.progress! / achievement.maxProgress!) * 100} 
-                                    className="h-2" 
+                                  <Progress
+                                    value={(achievement.progress! / achievement.maxProgress!) * 100}
+                                    className="h-2"
                                   />
                                   <p className="text-xs text-muted-foreground">
                                     {achievement.progress}/{achievement.maxProgress}
@@ -358,8 +329,17 @@ export const Profile: React.FC = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {recentActivity.concat(recentActivity).map((activity, index) => {
-                        const Icon = activity.icon;
+                      {recentActivity.map((activity, index) => {
+                        const getIcon = (name: string) => {
+                          switch (name) {
+                            case 'Mountain': return Mountain;
+                            case 'Award': return Award;
+                            case 'Flame': return Flame;
+                            case 'Leaf': return Leaf;
+                            default: return Target;
+                          }
+                        };
+                        const Icon = getIcon(activity.iconName);
                         return (
                           <div key={index} className="flex items-start space-x-4 pb-4 border-b border-border/50 last:border-0">
                             <div className="p-2 rounded-full bg-primary/10 mt-1">
@@ -431,7 +411,7 @@ export const Profile: React.FC = () => {
                         <p className="text-xs text-blue-600">73% of your completed activities</p>
                       </div>
                     </div>
-                    
+
                     <div className="p-4 rounded-lg bg-yellow-50 border border-yellow-200">
                       <h4 className="font-semibold text-yellow-800 mb-2">Improvement Suggestion</h4>
                       <p className="text-sm text-yellow-700">
