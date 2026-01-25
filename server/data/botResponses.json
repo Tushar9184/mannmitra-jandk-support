@@ -1,0 +1,16 @@
+{
+    "en": {
+        "greeting": "Hello! I'm MannMitra. I'm here to listen. How are you feeling today?",
+        "anxiety": "I hear you. Anxiety can be overwhelming. Try the 5-4-3-2-1 grounding technique: Name 5 things you see, 4 you can touch...",
+        "depression": "I'm sorry you're feeling this way. You are not alone. Would you like to connect with a counselor?",
+        "emergency": "It sounds like you're in distress. Please reach out to the J&K Helpline immediately: 112 or 1800-599-0019 (Tele-MANAS).",
+        "default": "I'm not sure I understand, but I'm here for you. Can you tell me more?"
+    },
+    "ur": {
+        "greeting": "السلام علیکم! میں من مترا ہوں۔ میں یہاں آپ کی بات سننے کے لیے ہوں۔ آج آپ کیسا محسوس کر رہے ہیں؟",
+        "anxiety": "میں سمجھ سکتا ہوں۔ بے چینی بہت زیادہ ہو سکتی ہے۔ گہری سانس لیں اور اپنے ارد گرد 5 چیزیں محسوس کرنے کی کوشش کریں۔",
+        "depression": "مجھے افسوس ہے کہ آپ ایسا محسوس کر رہے ہیں۔ آپ اکیلے نہیں ہیں۔ کیا آپ کسی ماہر نفسیات سے بات کرنا پسند کریں گے؟",
+        "emergency": "لگتا ہے آپ تکلیف میں ہیں۔ براہ کرم فوری طور پر اس ہیلپ لائن پر رابطہ کریں: 112 یا 0019-599-1800",
+        "default": "مجھے سمجھ نہیں آئی، لیکن میں آپ کے ساتھ ہوں۔ کیا آپ مجھے مزید بتا سکتے ہیں؟"
+    }
+}
