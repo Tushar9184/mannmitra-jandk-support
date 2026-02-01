@@ -13,7 +13,7 @@ connectDB();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:8080",
+        origin: process.env.CLIENT_URL || "http://localhost:8080",
         methods: ["GET", "POST"]
     }
 });
