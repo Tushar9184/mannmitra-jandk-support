@@ -5,7 +5,7 @@
   "scripts": {
     "install-all": "npm install && cd client && npm install && cd ../server && npm install",
     "build": "npm install && cd server && npm install",
-    "start": "cd server && npm start",
+    "start": "cd server && npm install && npm start",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "seed": "npm run seed --prefix server"
   },
