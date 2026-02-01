@@ -1,4 +1,4 @@
-import 'dotenv/config';
+
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './config/db.js';
